@@ -1,1 +1,46 @@
-<paste log output from Docker prediction, here>
+$ ./run_docker.sh
+Sending build context to Docker daemon  1.088MB
+Step 1/6 : FROM python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/6 : WORKDIR /app
+ ---> Using cache
+ ---> 132ef6025b26
+Step 3/6 : COPY . app.py /app/
+ ---> Using cache
+ ---> 2e460733ece1
+Step 4/6 : RUN pip install --upgrade pip --no-cache-dir &&    pip install --trusted-host pypi.python.org -r requirements.txt --no-cache-dir
+ ---> Using cache
+ ---> 4dae1a6c473a
+Step 5/6 : EXPOSE 80
+ ---> Using cache
+ ---> d520a6a93784
+Step 6/6 : CMD ["python", "app.py"]
+ ---> Using cache
+ ---> 5326e48e1039
+Successfully built 5326e48e1039
+Successfully tagged api:latest
+SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker host. All files and directories added to build context will have '-rwxr-xr-x' permissions. It is recommended to double check and reset permissions for sensitive files and directories.
+REPOSITORY                        TAG              IMAGE ID       CREATED          SIZE
+api                               latest           5326e48e1039   53 seconds ago   1.19GB
+<none>                            <none>           862b9a527184   13 minutes ago   1.19GB
+hadolint/hadolint                 latest           3acb0ae9962a   28 hours ago     8.97MB
+python                            3.7.3-stretch    34a518642c76   20 months ago    929MB
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 257-924-019
+[2021-10-31 22:36:30,687] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-10-31 22:36:30,698] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-10-31 22:36:30,706] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-10-31 22:36:30,709] INFO in app: Output prediction value: [20.35373177134412]
+172.17.0.1 - - [31/Oct/2021 22:36:30] "POST /predict HTTP/1.1" 200 -

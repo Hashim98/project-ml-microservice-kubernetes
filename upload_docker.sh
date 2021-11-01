@@ -6,10 +6,14 @@
 # Step 1:
 # Create dockerpath
 # dockerpath=<your docker ID/path>
+dockerpath=hashimriaz98/ml-api:latest
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
+docker login
+docker tag ml-api:latest $dockerpath
 
 # Step 3:
 # Push image to a docker repository
+docker push $dockerpath
