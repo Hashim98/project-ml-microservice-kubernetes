@@ -9,7 +9,7 @@ dockerpath=hashimriaz98/ml-api:latest
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl create deployment ml-api --image=$dockerpath
+kubectl run mlmicroserviceapi --generator=run-pod/v1 --image=$dockerpath --port=80 --labels app=mlmicroserviceapi
 
 # Step 3:
 # List kubernetes pods
@@ -17,4 +17,4 @@ kubectl get pods
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward deployment/ml-api 8000:80
+kubectl port-forward mlmicroserviceapi 8000:80
